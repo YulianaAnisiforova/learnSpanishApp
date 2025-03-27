@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink, Routes, Route} from 'react-router-dom'
-import Wordlist from './components/Wordlist'
-import FlashCards from './components/FlashCards'
+import Wordlist from './components/list/Wordlist'
+import FlashCards from './components/flashcards/FlashCards'
 
 function App() {
     return (

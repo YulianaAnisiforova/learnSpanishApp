@@ -1,11 +1,5 @@
 import {InferActionType} from './store'
-
-type CardType = {
-    cardID: number,
-    cardTheme: string,
-    cardWord: string,
-    cardTranslate: string,
-}
+import {CardType} from '../types/types'
 
 let initialState = {
     cards: [

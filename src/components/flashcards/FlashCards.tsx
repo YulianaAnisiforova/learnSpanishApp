@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useSelector} from 'react-redux'
-import {AppStateType} from '../redux/store'
+import {AppStateType} from '../../redux/store'
 import style from './FlashCards.module.css'
 
 const FlashCards = () => {
