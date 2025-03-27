@@ -23,13 +23,16 @@ const FlashCards = () => {
 
     return (
         <div>
+            {!isFlipped &&
             <div className={style.card}
-            onClick={() => setIsFlipped(!isFlipped)} >
+                 onClick={() => setIsFlipped(!isFlipped)} >
                 {cards[index].cardWord}
             </div>
+            }
 
             {isFlipped &&
-            <div className={style.card}>
+            <div className={style.card}
+                 onClick={() => setIsFlipped(!isFlipped)}>
                 {cards[index].cardTranslate}
             </div>}
 
