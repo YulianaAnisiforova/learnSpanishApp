@@ -1,0 +1,7 @@
+.card {
+    border: 1px solid grey;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    line-height: 150px;
+}

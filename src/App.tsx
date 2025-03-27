@@ -1,17 +1,24 @@
 import React from 'react'
 import {NavLink, Routes, Route} from 'react-router-dom'
-import Flashcards from './components/Flashcards'
+import Wordlist from './components/Wordlist'
+import FlashCards from './components/FlashCards'
 
 function App() {
-  return (
-    <div>
-      <NavLink to={'/cards'}>Flashcards</NavLink>
+    return (
+        <div>
+            <div>
+                <NavLink to={'/wordlist'}>List of the words</NavLink>
+            </div>
+            <div>
+                <NavLink to={'/flashcards'}>Flashcards</NavLink>
+            </div>
 
-        <Routes>
-            <Route path={'/cards'} element={<Flashcards />} />
-        </Routes>
-    </div>
-  );
+            <Routes>
+                <Route path={'/wordlist'} element={<Wordlist/>}/>
+                <Route path={'/flashcards'} element={<FlashCards/>}/>
+            </Routes>
+        </div>
+    );
 }
 
 export default App
