@@ -5,8 +5,6 @@
     line-height: 250px;
     font-size: 20px;
     border-radius: 20px;
-    background-color: #d4f5ea;
-
     position: relative;
     transition: transform 0.6s;
     transform-style: preserve-3d;
@@ -14,6 +12,27 @@
 }
 
 .card.flipped {
+    transform: rotateY(180deg);
+}
+
+.cardFront, .cardBack {
+    position: absolute;
+    backface-visibility: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    line-height: 250px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+.cardFront {
+    background-color: #d4f5ea;
+}
+
+.cardBack {
+    background-color: #73948c;
     transform: rotateY(180deg);
 }
 
