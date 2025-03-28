@@ -1,4 +1,5 @@
 import React from 'react'
+import style from './Wordlist.module.css'
 import {useSelector} from 'react-redux'
 import {AppStateType} from '../../redux/store'
 import NewWordForm from './NewWordForm'
@@ -9,7 +10,7 @@ const Wordlist = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
 
     return (
-        <div>
+        <div className={style.wordlistBox}>
             {cards.map(card =>
                 <WordlistItem key={card.cardID}
                               cardID={card.cardID}

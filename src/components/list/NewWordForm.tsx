@@ -29,7 +29,8 @@ const NewWordForm = () => {
                    {...register('newWord', {required: true,})} />
             <input type='text' placeholder={'add translation'}
                    {...register('newTranslate', {required: true,})} />
-            <select {...register('newTheme', {required: true})}>
+            <select defaultValue='defaultOption' {...register('newTheme', {required: true})}>
+                <option value='defaultOption' disabled>Choose theme</option>
                 {themes.map(theme => <option key={theme} value={theme} >{theme}</option>)}
             </select>
             <button type={'submit'} disabled={!isValid}>add</button>

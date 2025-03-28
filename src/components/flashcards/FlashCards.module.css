@@ -6,3 +6,14 @@
     line-height: 150px;
 }
 
+.cardBox {
+    width: 1000px;
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnBox {
+    display: flex;
+    justify-content: center;
+}

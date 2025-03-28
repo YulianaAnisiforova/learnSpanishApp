@@ -1,0 +1,12 @@
+.headerBox {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: solid black 1px;
+    width: 100%;
+}
+
+.headerBox div {
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+}

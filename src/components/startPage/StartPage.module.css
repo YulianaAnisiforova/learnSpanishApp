@@ -1,0 +1,9 @@
+.startBox {
+    height: 400px;
+    width: 400px;
+    margin: auto;
+    border: solid black 1px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}

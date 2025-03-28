@@ -22,26 +22,27 @@ const FlashCards = () => {
     }
 
     return (
-        <div>
-            {!isFlipped &&
-            <div className={style.card}
-                 onClick={() => setIsFlipped(!isFlipped)} >
-                {cards[index].cardWord}
-            </div>
-            }
-
-            {isFlipped &&
-            <div className={style.card}
-                 onClick={() => setIsFlipped(!isFlipped)}>
-                {cards[index].cardTranslate}
-            </div>}
-
+        <div className={style.cardBox}>
             <div>
-                <button onClick={onPrev}>prev</button>
-                <span> {index+1} / {cards.length} </span>
-                <button onClick={onNext}>next</button>
-            </div>
+                {!isFlipped &&
+                    <div className={style.card}
+                         onClick={() => setIsFlipped(!isFlipped)}>
+                        {cards[index].cardWord}
+                    </div>
+                }
 
+                {isFlipped &&
+                    <div className={style.card}
+                         onClick={() => setIsFlipped(!isFlipped)}>
+                        {cards[index].cardTranslate}
+                    </div>}
+
+                <div className={style.btnBox}>
+                    <button onClick={onPrev}>prev</button>
+                    <span> {index + 1} / {cards.length} </span>
+                    <button onClick={onNext}>next</button>
+                </div>
+            </div>
         </div>
     )
 }
