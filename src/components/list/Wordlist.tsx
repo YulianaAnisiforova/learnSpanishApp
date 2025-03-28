@@ -8,19 +8,30 @@ import NewThemeForm from './NewThemeForm'
 
 const Wordlist = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
+    const themes = useSelector((state: AppStateType) => state.cardsPage.themes)
+
+    const groupedCards = themes.map(theme => ({
+        theme,
+        cards: cards.filter(card => card.cardTheme === theme)
+    }));
 
     return (
         <div className={style.wordlistBox}>
-            <br/>
-            <div className={style.listBox}>
-                {cards.map(card =>
-                    <WordlistItem key={card.cardID}
-                                  cardID={card.cardID}
-                                  cardTheme={card.cardTheme}
-                                  cardWord={card.cardWord}
-                                  cardTranslate={card.cardTranslate}
-                    />)}
-            </div>
+            {groupedCards.map(group => (
+                <div key={group.theme} className={style.groupBox}>
+                    <div className={style.themeTitle}>{group.theme}</div>
+                        <div className={style.listBox}>
+                            {group.cards.map(card =>
+                                <WordlistItem key={card.cardID}
+                                              cardID={card.cardID}
+                                              cardTheme={card.cardTheme}
+                                              cardWord={card.cardWord}
+                                              cardTranslate={card.cardTranslate}
+                                />)}
+                        </div>
+                </div>
+            ))}
+
             <br/>
             <NewWordForm/>
             <br/>

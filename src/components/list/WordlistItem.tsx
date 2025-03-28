@@ -11,7 +11,7 @@ type WordlistItemPropsType = {
 const WordlistItem: React.FC<WordlistItemPropsType> = (props) => {
     return (
         <div className={style.wordItem}>
-            {props.cardID}. {props.cardTheme}: {props.cardWord}, {props.cardTranslate}
+            {props.cardWord} - {props.cardTranslate}
         </div>
     )
 }

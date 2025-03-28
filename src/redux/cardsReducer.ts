@@ -7,6 +7,11 @@ let initialState = {
         {cardID: 2, cardTheme: 'la familia', cardWord: 'el padre', cardTranslate: 'father'},
         {cardID: 3, cardTheme: 'la familia', cardWord: 'la hermana', cardTranslate: 'sister'},
         {cardID: 4, cardTheme: 'la familia', cardWord: 'el abuelo', cardTranslate: 'grandfather'},
+        {cardID: 5, cardTheme: 'la casa', cardWord: 'la mesa', cardTranslate: 'table'},
+        {cardID: 6, cardTheme: 'la casa', cardWord: 'la cama', cardTranslate: 'bed'},
+        {cardID: 7, cardTheme: 'el caracter', cardWord: 'bueno', cardTranslate: 'good'},
+        {cardID: 8, cardTheme: 'el caracter', cardWord: 'malo', cardTranslate: 'bad'},
+        {cardID: 9, cardTheme: 'la comida', cardWord: 'la naranja', cardTranslate: 'orange'},
     ] as CardType[],
     themes: ['la familia', 'la casa', 'el caracter', 'la comida'] as string[],
 }
