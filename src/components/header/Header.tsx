@@ -6,13 +6,16 @@ const Header = () => {
     return (
         <div className={style.headerBox}>
             <div>
-                <NavLink to={'/'}>Start page</NavLink>
+                <NavLink to={'/'} className={navData => navData.isActive ? style.active : style.link}
+                    >Start page</NavLink>
             </div>
             <div>
-                <NavLink to={'/wordlist'}>List of the words</NavLink>
+                <NavLink to={'/wordlist'} className={navData => navData.isActive ? style.active : style.link}
+                    >List of the words</NavLink>
             </div>
             <div>
-                <NavLink to={'/flashcards'}>Flashcards</NavLink>
+                <NavLink to={'/flashcards'} className={navData => navData.isActive ? style.active : style.link}
+                    >Flashcards</NavLink>
             </div>
         </div>
     )
