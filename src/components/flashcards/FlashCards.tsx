@@ -38,9 +38,9 @@ const FlashCards = () => {
                     </div>}
 
                 <div className={style.btnBox}>
-                    <button onClick={onPrev}>prev</button>
+                    <button onClick={onPrev} className={style.btn}>prev</button>
                     <span> {index + 1} / {cards.length} </span>
-                    <button onClick={onNext}>next</button>
+                    <button onClick={onNext} className={style.btn}>next</button>
                 </div>
             </div>
         </div>

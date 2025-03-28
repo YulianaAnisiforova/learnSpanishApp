@@ -1,19 +1,47 @@
 .card {
-    border: 1px solid grey;
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     text-align: center;
-    line-height: 150px;
+    line-height: 250px;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: #d4f5ea;
+
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
 }
 
 .cardBox {
     width: 1000px;
-    border: solid black 1px;
     display: flex;
     justify-content: center;
+    margin-top: 150px;
 }
 
 .btnBox {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.btn {
+    height: 30px;
+    width: 40px;
+    background-color: white;
+    border: 1px solid #83a69d;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn:hover {
+    background-color: #83a69d;
+    transition: 0.5s;
 }

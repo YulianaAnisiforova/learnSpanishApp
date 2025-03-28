@@ -11,13 +11,16 @@ const Wordlist = () => {
 
     return (
         <div className={style.wordlistBox}>
-            {cards.map(card =>
-                <WordlistItem key={card.cardID}
-                              cardID={card.cardID}
-                              cardTheme={card.cardTheme}
-                              cardWord={card.cardWord}
-                              cardTranslate={card.cardTranslate}
-                />)}
+            <br/>
+            <div className={style.listBox}>
+                {cards.map(card =>
+                    <WordlistItem key={card.cardID}
+                                  cardID={card.cardID}
+                                  cardTheme={card.cardTheme}
+                                  cardWord={card.cardWord}
+                                  cardTranslate={card.cardTranslate}
+                    />)}
+            </div>
             <br/>
             <NewWordForm/>
             <br/>

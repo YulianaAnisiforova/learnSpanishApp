@@ -1,5 +1,4 @@
 .wordlistBox {
-    padding-left: 100px;
     font-size: 20px;
 }
 
@@ -30,6 +29,7 @@
     border: 1px solid #83a69d;
     border-radius: 10px;
     cursor: pointer;
+    margin: 5px;
 }
 
 .btn:hover {
@@ -37,7 +37,32 @@
     transition: 0.5s;
 }
 
+.btn:disabled:hover {
+    background-color: white;
+    cursor: auto;
+}
+
 .formBox {
     display: flex;
     align-items: center;
+}
+
+.listBox {
+    border-radius: 20px;
+    background-color: rgba(212, 245, 234, 0.4);
+    padding: 10px;
+    margin: auto;
+    width: 500px;
+}
+
+.chooseForm {
+    font-size: 20px;
+    outline: none;
+    background-color: white;
+    border: 1px solid #83a69d;
+    border-radius: 10px;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+    color: #73948c;
 }

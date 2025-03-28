@@ -26,15 +26,22 @@ const NewWordForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onAddCardBtn)}>
-            <input type='text' placeholder={'add new word'} className={style.inputForm}
-                   {...register('newWord', {required: true,})} />
-            <input type='text' placeholder={'add translation'} className={style.inputForm}
-                   {...register('newTranslate', {required: true,})} />
-            <select defaultValue='defaultOption' {...register('newTheme', {required: true})}>
-                <option value='defaultOption' disabled>Choose theme</option>
-                {themes.map(theme => <option key={theme} value={theme} >{theme}</option>)}
-            </select>
-            <button type={'submit'} disabled={!isValid}>add</button>
+            <div>
+                Add your own words below:
+            </div>
+            <br/>
+            <div className={style.formBox}>
+                <input type='text' placeholder={'new word'} className={style.inputForm}
+                       {...register('newWord', {required: true,})} />
+                <input type='text' placeholder={'translation'} className={style.inputForm}
+                       {...register('newTranslate', {required: true,})} />
+                <select defaultValue='defaultOption' className={style.chooseForm}
+                        {...register('newTheme', {required: true})}>
+                    <option value='defaultOption' disabled>Choose theme</option>
+                    {themes.map(theme => <option key={theme} value={theme}>{theme}</option>)}
+                </select>
+                <button type={'submit'} disabled={!isValid} className={style.btn}>add</button>
+            </div>
         </form>
     )
 }

@@ -26,11 +26,11 @@ const NewThemeForm = () => {
             <div>
                 If there is no topic you need among the existing ones, you can add a new one:
             </div>
+            <br/>
             <div className={style.formBox}>
                 <input type='text' placeholder={'new theme'} className={style.inputForm}
                        {...register('newThemeAdd', {required: true,})} />
-                {/*<button disabled={!isValid} >add</button>*/}
-                <button className={style.btn}>add</button>
+                <button type={'submit'} disabled={!isValid} className={style.btn} >add</button>
             </div>
         </form>
     )
