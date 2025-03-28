@@ -24,20 +24,6 @@ const FlashCards = () => {
     return (
         <div className={style.cardBox}>
             <div>
-                {/*{!isFlipped &&*/}
-                {/*    <div className={`${style.card} ${isFlipped ? style.flipped : ''}`}*/}
-                {/*         onClick={() => setIsFlipped(!isFlipped)}>*/}
-                {/*        {cards[index].cardWord}*/}
-                {/*    </div>*/}
-                {/*}*/}
-
-                {/*{isFlipped &&*/}
-                {/*    <div className={`${style.card} ${isFlipped ? style.flipped : ''}`}*/}
-                {/*         onClick={() => setIsFlipped(!isFlipped)}>*/}
-                {/*        {cards[index].cardTranslate}*/}
-                {/*    </div>}*/}
-
-
                 <div className={`${style.card} ${isFlipped ? style.flipped : ''}`}
                     onClick={() => setIsFlipped(!isFlipped)} >
                     <div className={style.cardFront}>
@@ -47,10 +33,6 @@ const FlashCards = () => {
                         {cards[index].cardTranslate}
                     </div>
                 </div>
-
-
-
-
                 <div className={style.btnBox}>
                     <button onClick={onPrev} className={style.btn}>prev</button>
                     <span> {index + 1} / {cards.length} </span>

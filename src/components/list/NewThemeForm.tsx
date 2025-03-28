@@ -30,7 +30,7 @@ const NewThemeForm = () => {
             <div className={style.formBox}>
                 <input type='text' placeholder={'new theme'} className={style.inputForm}
                        {...register('newThemeAdd', {required: true,})} />
-                <button type={'submit'} disabled={!isValid} className={style.btn} >add</button>
+                <button type={'submit'} disabled={!isValid} className={style.btn} >+</button>
             </div>
         </form>
     )

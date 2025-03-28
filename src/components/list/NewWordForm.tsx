@@ -40,7 +40,7 @@ const NewWordForm = () => {
                     <option value='defaultOption' disabled>Choose theme</option>
                     {themes.map(theme => <option key={theme} value={theme}>{theme}</option>)}
                 </select>
-                <button type={'submit'} disabled={!isValid} className={style.btn}>add</button>
+                <button type={'submit'} disabled={!isValid} className={style.btn}>+</button>
             </div>
         </form>
     )
