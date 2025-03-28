@@ -18,9 +18,10 @@ const Wordlist = () => {
                               cardWord={card.cardWord}
                               cardTranslate={card.cardTranslate}
                 />)}
-
-            <NewWordForm />
-            <NewThemeForm />
+            <br/>
+            <NewWordForm/>
+            <br/>
+            <NewThemeForm/>
         </div>
     )
 }

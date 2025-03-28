@@ -8,12 +8,6 @@ body {
   width: 1000px;
   height: 1000px;
   margin: auto;
-
-  background-color: rgba(0, 242, 141, 0.1);
-  border: solid black 1px;
-
-  /*display: grid;*/
-  /*grid-template-rows: 2fr 6fr;*/
 }
 
 code {

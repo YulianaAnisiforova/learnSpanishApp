@@ -2,6 +2,7 @@ import React from 'react'
 import {useDispatch} from 'react-redux'
 import {cardsActions} from '../../redux/cardsReducer'
 import {useForm} from 'react-hook-form'
+import style from './Wordlist.module.css'
 
 const NewThemeForm = () => {
     const dispatch = useDispatch()
@@ -22,9 +23,15 @@ const NewThemeForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onAddThemeBtn)}>
-            <input type='text' placeholder={'add new theme'}
-                   {...register('newThemeAdd', {required: true,})} />
-            <button type={'submit'} disabled={!isValid}>add new theme</button>
+            <div>
+                If there is no topic you need among the existing ones, you can add a new one:
+            </div>
+            <div className={style.formBox}>
+                <input type='text' placeholder={'new theme'} className={style.inputForm}
+                       {...register('newThemeAdd', {required: true,})} />
+                {/*<button disabled={!isValid} >add</button>*/}
+                <button className={style.btn}>add</button>
+            </div>
         </form>
     )
 }

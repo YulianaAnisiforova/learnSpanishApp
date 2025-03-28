@@ -1,5 +1,43 @@
 .wordlistBox {
-    width: 1000px;
-    border: solid black 1px;
-    padding-left: 50px;
+    padding-left: 100px;
+    font-size: 20px;
+}
+
+.wordItem {
+    margin: 10px;
+}
+
+.inputForm {
+    font-size: 20px;
+    outline: none;
+    background-color: white;
+    border: 1px solid #83a69d;
+    border-radius: 10px;
+    height: 30px;
+    margin: 5px;
+}
+
+.inputForm::placeholder {
+    padding-left: 10px;
+}
+
+.inputForm:-webkit-autofill {transition: background-color 5000s ease-in-out 0s;}
+
+.btn {
+    height: 30px;
+    width: 40px;
+    background-color: white;
+    border: 1px solid #83a69d;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #83a69d;
+    transition: 0.5s;
+}
+
+.formBox {
+    display: flex;
+    align-items: center;
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import style from './Wordlist.module.css'
 
 type WordlistItemPropsType = {
     cardID: number,
@@ -9,9 +10,8 @@ type WordlistItemPropsType = {
 
 const WordlistItem: React.FC<WordlistItemPropsType> = (props) => {
     return (
-        <div>
-            {props.cardID}, {props.cardTheme},
-            {props.cardWord}, {props.cardTranslate}
+        <div className={style.wordItem}>
+            {props.cardID}. {props.cardTheme}: {props.cardWord}, {props.cardTranslate}
         </div>
     )
 }

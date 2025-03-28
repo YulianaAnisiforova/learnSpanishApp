@@ -1,13 +1,13 @@
 .headerBox {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border: solid black 1px;
     width: 100%;
     height: 50px;
+    border-radius: 20px;
+    background-color: #d4f5ea;
 }
 
 .headerBox div {
-    border: solid black 1px;
     display: flex;
     justify-content: center;
     align-items: center;
