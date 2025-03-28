@@ -8,6 +8,7 @@ let initialState = {
         {cardID: 3, cardTheme: 'la familia', cardWord: 'la hermana', cardTranslate: 'sister'},
         {cardID: 4, cardTheme: 'la familia', cardWord: 'el abuelo', cardTranslate: 'grandfather'},
     ] as CardType[],
+    themes: ['la familia', 'la casa', 'el caracter', 'la comida'] as string[],
 }
 
 type InitialStateType = typeof initialState
@@ -27,6 +28,11 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                     {cardID: state.cards.length+1, cardTheme: action.payload.newTheme,
                     cardTranslate: action.payload.newTranslate, cardWord:action.payload.newWord}, ],
             }
+        case 'ADD_NEW_THEME':
+            return {
+                ... state,
+                themes: [...state.themes, action.newThemeAdd],
+            }
         default:
             return state
     }
@@ -36,6 +42,8 @@ export const cardsActions = {
     // setCardsAC: (cards: CardType[]) => ({type: 'SET_CARDS', cards} as const),
     addNewCardsAC: (newWord: string, newTranslate: string, newTheme: string) =>
         ({type: 'ADD_NEW_CARD', payload: {newWord, newTheme, newTranslate}} as const),
+    addNewThemeAC: (newThemeAdd: string) =>
+        ({type: 'ADD_NEW_THEME', newThemeAdd} as const),
 }
 
 export default cardsReducer

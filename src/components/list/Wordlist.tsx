@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux'
 import {AppStateType} from '../../redux/store'
 import NewWordForm from './NewWordForm'
 import WordlistItem from './WordlistItem'
+import NewThemeForm from './NewThemeForm'
 
 const Wordlist = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
@@ -17,7 +18,8 @@ const Wordlist = () => {
                               cardTranslate={card.cardTranslate}
                 />)}
 
-            <NewWordForm/>
+            <NewWordForm />
+            <NewThemeForm />
         </div>
     )
 }
