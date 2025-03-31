@@ -86,3 +86,14 @@
     display: flex;
     justify-content: center;
 }
+
+.cardAndRepeatBtnBox {
+    display: flex;
+}
+
+.repeatBtnBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto;
+}

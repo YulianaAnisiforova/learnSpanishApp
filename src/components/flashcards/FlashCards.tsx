@@ -9,14 +9,15 @@ const FlashCards = () => {
     const themes = useSelector((state: AppStateType) => state.cardsPage.themes)
 
     const themeOptions = ['all', ...themes]
+    const currentCards = [...cards]
 
     const [selectedTheme, setSelectedTheme] = useState<string>('all')
     const [index, setIndex] = useState(0)
     const [isFlipped, setIsFlipped] = useState(false)
 
     const filteredCards = selectedTheme === 'all'
-        ? cards
-        : cards.filter(card => card.cardTheme === selectedTheme)
+        ? currentCards
+        : currentCards.filter(card => card.cardTheme === selectedTheme)
 
     const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedTheme(event.target.value)
@@ -59,6 +60,8 @@ const FlashCards = () => {
                                themes={themeOptions}/>
 
                 <div className={style.theme}>{filteredCards[index].cardTheme}</div>
+
+                <div className={style.cardAndRepeatBtnBox}>
                 <div
                     className={`${style.card} ${isFlipped ? style.flipped : ''}`}
                     onClick={() => setIsFlipped(!isFlipped)}
@@ -70,6 +73,13 @@ const FlashCards = () => {
                         {filteredCards[index].cardTranslate}
                     </div>
                 </div>
+
+                <div className={style.repeatBtnBox}>
+                    <button className={style.btn}>I remember this word, DELETE IT</button>
+                    <button className={style.btn}>I don't remember this word, REPEAT IT</button>
+                </div>
+                </div>
+
                 <div className={style.btnBox}>
                     <button onClick={onPrev} className={style.btn}>prev</button>
                     <span> {index + 1} / {filteredCards.length} </span>

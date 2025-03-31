@@ -24,7 +24,7 @@ const Wordlist = () => {
     return (
         <div className={style.wordlistBox}>
             {groupedCards.map(group => (
-                <div key={group.theme} className={style.groupBox}>
+                <div key={group.theme}>
                     <div className={style.themeTitle}>{group.theme}</div>
                         <div className={style.listBox}>
                             {group.cards.map(card =>

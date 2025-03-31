@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './Wordlist.module.css'
+import { DeleteOutlined } from '@ant-design/icons'
 
 type WordlistItemPropsType = {
     cardID: number,
@@ -15,6 +16,7 @@ const WordlistItem: React.FC<WordlistItemPropsType> = (props) => {
              onDoubleClick={() => props.onDeleteDoubleClick(props.cardID)}
         >
             {props.cardWord} - {props.cardTranslate}
+            <DeleteOutlined className={style.deleteIcon}/>
         </div>
     )
 }
