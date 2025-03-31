@@ -28,14 +28,14 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
         //     }
         case 'ADD_NEW_CARD':
             return {
-                ... state,
+                ...state,
                 cards: [...state.cards,
                     {cardID: state.cards.length+1, cardTheme: action.payload.newTheme,
                     cardTranslate: action.payload.newTranslate, cardWord:action.payload.newWord}, ],
             }
         case 'ADD_NEW_THEME':
             return {
-                ... state,
+                ...state,
                 themes: [...state.themes, action.newThemeAdd],
             }
         default:

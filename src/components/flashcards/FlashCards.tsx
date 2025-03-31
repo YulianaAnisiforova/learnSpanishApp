@@ -24,6 +24,7 @@ const FlashCards = () => {
     return (
         <div className={style.cardBox}>
             <div>
+                <div className={style.theme}>{cards[index].cardTheme}</div>
                 <div className={`${style.card} ${isFlipped ? style.flipped : ''}`}
                     onClick={() => setIsFlipped(!isFlipped)} >
                     <div className={style.cardFront}>
