@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 import {AppStateType} from '../../redux/store'
 import style from './FlashCards.module.css'
@@ -21,6 +21,10 @@ const FlashCards = () => {
         : cards.filter(card => card.cardTheme === selectedTheme)
 
     const [currentCards, setCurrentCards] = useState([...filteredCards])
+
+    useEffect(() => {
+        setCurrentCards(filteredCards)
+    }, [selectedTheme])
 
     const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedTheme(event.target.value)
@@ -50,7 +54,7 @@ const FlashCards = () => {
         setCurrentCards(updatedCards)
     }
 
-    if (filteredCards.length === 0) {
+    if (currentCards.length === 0) {
         return (
             <div className={style.cardBox}>
                 <div>
