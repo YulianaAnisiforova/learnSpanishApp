@@ -38,6 +38,11 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                 ...state,
                 themes: [...state.themes, action.newThemeAdd],
             }
+        case 'DELETE_WORD':
+            return {
+                ...state,
+                cards: [...state.cards.filter(card => card.cardID !== action.cardID)]
+            }
         default:
             return state
     }
@@ -49,6 +54,8 @@ export const cardsActions = {
         ({type: 'ADD_NEW_CARD', payload: {newWord, newTheme, newTranslate}} as const),
     addNewThemeAC: (newThemeAdd: string) =>
         ({type: 'ADD_NEW_THEME', newThemeAdd} as const),
+    deleteWordAC: (cardID: number) =>
+        ({type: 'DELETE_WORD', cardID} as const),
 }
 
 export default cardsReducer
