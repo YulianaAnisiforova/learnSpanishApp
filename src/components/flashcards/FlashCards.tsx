@@ -8,11 +8,15 @@ const FlashCards = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
     const themes = useSelector((state: AppStateType) => state.cardsPage.themes)
 
-    const [selectedTheme, setSelectedTheme] = useState<string>(themes[0])
+    const themeOptions = ['all', ...themes]
+
+    const [selectedTheme, setSelectedTheme] = useState<string>('all')
     const [index, setIndex] = useState(0)
     const [isFlipped, setIsFlipped] = useState(false)
 
-    const filteredCards = cards.filter(card => card.cardTheme === selectedTheme)
+    const filteredCards = selectedTheme === 'all'
+        ? cards
+        : cards.filter(card => card.cardTheme === selectedTheme)
 
     const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedTheme(event.target.value)
@@ -38,7 +42,7 @@ const FlashCards = () => {
                 <div>
                     <ThemeSelector selectedTheme={selectedTheme}
                                    handleThemeChange={handleThemeChange}
-                                   themes={themes}/>
+                                   themes={themeOptions}/>
                     <div className={style.card}>
                         <span>No cards in this topic yet.</span>
                     </div>
@@ -52,7 +56,7 @@ const FlashCards = () => {
             <div>
                 <ThemeSelector selectedTheme={selectedTheme}
                                handleThemeChange={handleThemeChange}
-                               themes={themes}/>
+                               themes={themeOptions}/>
 
                 <div className={style.theme}>{filteredCards[index].cardTheme}</div>
                 <div
