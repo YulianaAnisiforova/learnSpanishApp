@@ -3,21 +3,24 @@ import {useSelector} from 'react-redux'
 import {AppStateType} from '../../redux/store'
 import style from './FlashCards.module.css'
 import ThemeSelector from './ThemeSelector'
+import {CloseOutlined, LeftOutlined, RetweetOutlined, RightOutlined} from '@ant-design/icons'
+import {CardType} from '../../types/types'
 
 const FlashCards = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
     const themes = useSelector((state: AppStateType) => state.cardsPage.themes)
 
     const themeOptions = ['all', ...themes]
-    const currentCards = [...cards]
 
     const [selectedTheme, setSelectedTheme] = useState<string>('all')
     const [index, setIndex] = useState(0)
     const [isFlipped, setIsFlipped] = useState(false)
 
     const filteredCards = selectedTheme === 'all'
-        ? currentCards
-        : currentCards.filter(card => card.cardTheme === selectedTheme)
+        ? cards
+        : cards.filter(card => card.cardTheme === selectedTheme)
+
+    const [currentCards, setCurrentCards] = useState([...filteredCards])
 
     const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedTheme(event.target.value)
@@ -28,13 +31,23 @@ const FlashCards = () => {
     const onPrev = () => {
         setIsFlipped(false)
         setIndex((currentIndex) =>
-            currentIndex === 0 ? filteredCards.length - 1 : currentIndex - 1)
+            currentIndex === 0 ? currentCards.length - 1 : currentIndex - 1)
     }
 
     const onNext = () => {
         setIsFlipped(false)
         setIndex((currentIndex) =>
-            currentIndex === filteredCards.length - 1 ? 0 : currentIndex + 1)
+            currentIndex === currentCards.length - 1 ? 0 : currentIndex + 1)
+    }
+
+    const onSkipWord = (cardID: number, currentCards: CardType[]) => {
+        setIsFlipped(false)
+        if (index >= currentCards.length - 1) {
+            setIndex(Math.max(0, currentCards.length - 2));
+        }
+
+        const updatedCards = currentCards.filter(card => card.cardID !== cardID)
+        setCurrentCards(updatedCards)
     }
 
     if (filteredCards.length === 0) {
@@ -59,7 +72,7 @@ const FlashCards = () => {
                                handleThemeChange={handleThemeChange}
                                themes={themeOptions}/>
 
-                <div className={style.theme}>{filteredCards[index].cardTheme}</div>
+                <div className={style.theme}>{currentCards[index].cardTheme}</div>
 
                 <div className={style.cardAndRepeatBtnBox}>
                 <div
@@ -67,23 +80,23 @@ const FlashCards = () => {
                     onClick={() => setIsFlipped(!isFlipped)}
                 >
                     <div className={style.cardFront}>
-                        {filteredCards[index].cardWord}
+                        {currentCards[index].cardWord}
                     </div>
                     <div className={style.cardBack}>
-                        {filteredCards[index].cardTranslate}
+                        {currentCards[index].cardTranslate}
                     </div>
                 </div>
 
                 <div className={style.repeatBtnBox}>
-                    <button className={style.btn}>I remember this word, DELETE IT</button>
-                    <button className={style.btn}>I don't remember this word, REPEAT IT</button>
+                    <button className={style.btn} onClick={() => onSkipWord(currentCards[index].cardID, currentCards)}><CloseOutlined /></button>
+                    <button className={style.btn} onClick={onNext}><RetweetOutlined /></button>
                 </div>
                 </div>
 
                 <div className={style.btnBox}>
-                    <button onClick={onPrev} className={style.btn}>prev</button>
-                    <span> {index + 1} / {filteredCards.length} </span>
-                    <button onClick={onNext} className={style.btn}>next</button>
+                    <button onClick={onPrev} className={style.btn}><LeftOutlined /></button>
+                    <span> {index + 1} / {currentCards.length} </span>
+                    <button onClick={onNext} className={style.btn}><RightOutlined /></button>
                 </div>
             </div>
         </div>

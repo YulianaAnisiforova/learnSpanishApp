@@ -11,7 +11,7 @@ const Header = () => {
             </div>
             <div>
                 <NavLink to={'/wordlist'} className={navData => navData.isActive ? style.active : style.link}
-                    >List of the words</NavLink>
+                    >Wordlist</NavLink>
             </div>
             <div>
                 <NavLink to={'/flashcards'} className={navData => navData.isActive ? style.active : style.link}

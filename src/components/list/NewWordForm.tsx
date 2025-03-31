@@ -4,6 +4,7 @@ import {cardsActions} from '../../redux/cardsReducer'
 import {useForm} from 'react-hook-form'
 import {AppStateType} from '../../redux/store'
 import style from './Wordlist.module.css'
+import {PlusOutlined} from '@ant-design/icons'
 
 const NewWordForm = () => {
     const dispatch = useDispatch()
@@ -40,7 +41,7 @@ const NewWordForm = () => {
                     <option value='defaultOption' disabled>Choose theme</option>
                     {themes.map(theme => <option key={theme} value={theme}>{theme}</option>)}
                 </select>
-                <button type={'submit'} disabled={!isValid} className={style.btn}>+</button>
+                <button type={'submit'} disabled={!isValid} className={style.btn}><PlusOutlined /></button>
             </div>
         </form>
     )

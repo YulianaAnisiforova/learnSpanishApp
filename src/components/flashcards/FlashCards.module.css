@@ -68,6 +68,7 @@
 .theme {
     text-align: center;
     color: #73948c;
+    margin-bottom: 10px;
 }
 
 .themeSelector {
@@ -89,11 +90,13 @@
 
 .cardAndRepeatBtnBox {
     display: flex;
+    position: relative;
 }
 
 .repeatBtnBox {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin: auto;
+    position: absolute;
+    right: -80px;
+    top: 35%;
 }

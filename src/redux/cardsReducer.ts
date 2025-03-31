@@ -43,6 +43,10 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                 ...state,
                 cards: [...state.cards.filter(card => card.cardID !== action.cardID)]
             }
+        // case 'SKIP_FLASHCARD':
+        //     return {
+        //         ...state,
+        //     }
         default:
             return state
     }
@@ -56,6 +60,8 @@ export const cardsActions = {
         ({type: 'ADD_NEW_THEME', newThemeAdd} as const),
     deleteWordAC: (cardID: number) =>
         ({type: 'DELETE_WORD', cardID} as const),
+    // skipFlashcardAC: (cardID: number, filteredCards: CardType[]) =>
+    //     ({type: 'SKIP_FLASHCARD', payload: {cardID, filteredCards}} as const),
 }
 
 export default cardsReducer

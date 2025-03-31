@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux'
 import {cardsActions} from '../../redux/cardsReducer'
 import {useForm} from 'react-hook-form'
 import style from './Wordlist.module.css'
+import {PlusOutlined} from '@ant-design/icons'
 
 const NewThemeForm = () => {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ const NewThemeForm = () => {
             <div className={style.formBox}>
                 <input type='text' placeholder={'new theme'} className={style.inputForm}
                        {...register('newThemeAdd', {required: true,})} />
-                <button type={'submit'} disabled={!isValid} className={style.btn} >+</button>
+                <button type={'submit'} disabled={!isValid} className={style.btn} ><PlusOutlined /></button>
             </div>
         </form>
     )
