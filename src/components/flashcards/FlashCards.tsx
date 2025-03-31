@@ -5,6 +5,7 @@ import style from './FlashCards.module.css'
 import ThemeSelector from './ThemeSelector'
 import {CloseOutlined, LeftOutlined, RetweetOutlined, RightOutlined} from '@ant-design/icons'
 import {CardType} from '../../types/types'
+import FlashCardItem from './FlashCardItem'
 
 const FlashCards = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
@@ -79,22 +80,15 @@ const FlashCards = () => {
                 <div className={style.theme}>{currentCards[index].cardTheme}</div>
 
                 <div className={style.cardAndRepeatBtnBox}>
-                <div
-                    className={`${style.card} ${isFlipped ? style.flipped : ''}`}
-                    onClick={() => setIsFlipped(!isFlipped)}
-                >
-                    <div className={style.cardFront}>
-                        {currentCards[index].cardWord}
-                    </div>
-                    <div className={style.cardBack}>
-                        {currentCards[index].cardTranslate}
-                    </div>
-                </div>
+                    <FlashCardItem isFlipped={isFlipped}
+                                   index={index}
+                                   currentCards={currentCards}
+                                   setIsFlipped={setIsFlipped} />
 
-                <div className={style.repeatBtnBox}>
-                    <button className={style.btn} onClick={() => onSkipWord(currentCards[index].cardID, currentCards)}><CloseOutlined /></button>
-                    <button className={style.btn} onClick={onNext}><RetweetOutlined /></button>
-                </div>
+                    <div className={style.repeatBtnBox}>
+                        <button className={style.btn} onClick={() => onSkipWord(currentCards[index].cardID, currentCards)}><CloseOutlined /></button>
+                        <button className={style.btn} onClick={onNext}><RetweetOutlined /></button>
+                    </div>
                 </div>
 
                 <div className={style.btnBox}>
