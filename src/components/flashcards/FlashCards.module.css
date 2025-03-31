@@ -69,3 +69,20 @@
     text-align: center;
     color: #73948c;
 }
+
+.themeSelector {
+    font-size: 20px;
+    outline: none;
+    background-color: white;
+    border: 1px solid #83a69d;
+    border-radius: 10px;
+    height: 30px;
+    cursor: pointer;
+    color: #73948c;
+    margin-bottom: 30px;
+}
+
+.selectBox {
+    display: flex;
+    justify-content: center;
+}

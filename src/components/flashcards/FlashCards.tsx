@@ -2,41 +2,73 @@ import React, {useState} from 'react'
 import {useSelector} from 'react-redux'
 import {AppStateType} from '../../redux/store'
 import style from './FlashCards.module.css'
+import ThemeSelector from './ThemeSelector'
 
 const FlashCards = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
+    const themes = useSelector((state: AppStateType) => state.cardsPage.themes)
 
+    const [selectedTheme, setSelectedTheme] = useState<string>(themes[0])
     const [index, setIndex] = useState(0)
     const [isFlipped, setIsFlipped] = useState(false)
+
+    const filteredCards = cards.filter(card => card.cardTheme === selectedTheme)
+
+    const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedTheme(event.target.value)
+        setIndex(0)
+        setIsFlipped(false)
+    }
 
     const onPrev = () => {
         setIsFlipped(false)
         setIndex((currentIndex) =>
-            currentIndex === 0 ? cards.length - 1 : currentIndex - 1)
+            currentIndex === 0 ? filteredCards.length - 1 : currentIndex - 1)
     }
 
     const onNext = () => {
         setIsFlipped(false)
         setIndex((currentIndex) =>
-            currentIndex === cards.length - 1 ? 0 : currentIndex + 1)
+            currentIndex === filteredCards.length - 1 ? 0 : currentIndex + 1)
+    }
+
+    if (filteredCards.length === 0) {
+        return (
+            <div className={style.cardBox}>
+                <div>
+                    <ThemeSelector selectedTheme={selectedTheme}
+                                   handleThemeChange={handleThemeChange}
+                                   themes={themes}/>
+                    <div className={style.card}>
+                        <span>No cards in this topic yet.</span>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     return (
         <div className={style.cardBox}>
             <div>
-                <div className={style.theme}>{cards[index].cardTheme}</div>
-                <div className={`${style.card} ${isFlipped ? style.flipped : ''}`}
-                    onClick={() => setIsFlipped(!isFlipped)} >
+                <ThemeSelector selectedTheme={selectedTheme}
+                               handleThemeChange={handleThemeChange}
+                               themes={themes}/>
+
+                <div className={style.theme}>{filteredCards[index].cardTheme}</div>
+                <div
+                    className={`${style.card} ${isFlipped ? style.flipped : ''}`}
+                    onClick={() => setIsFlipped(!isFlipped)}
+                >
                     <div className={style.cardFront}>
-                        {cards[index].cardWord}
+                        {filteredCards[index].cardWord}
                     </div>
                     <div className={style.cardBack}>
-                        {cards[index].cardTranslate}
+                        {filteredCards[index].cardTranslate}
                     </div>
                 </div>
                 <div className={style.btnBox}>
                     <button onClick={onPrev} className={style.btn}>prev</button>
-                    <span> {index + 1} / {cards.length} </span>
+                    <span> {index + 1} / {filteredCards.length} </span>
                     <button onClick={onNext} className={style.btn}>next</button>
                 </div>
             </div>
