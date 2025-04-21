@@ -30,8 +30,10 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
             return {
                 ...state,
                 cards: [...state.cards,
-                    {cardID: state.cards.length+1, cardTheme: action.payload.newTheme,
-                    cardTranslate: action.payload.newTranslate, cardWord:action.payload.newWord}, ],
+                    {
+                        cardID: state.cards.length + 1, cardTheme: action.payload.newTheme,
+                        cardTranslate: action.payload.newTranslate, cardWord: action.payload.newWord
+                    },],
             }
         case 'ADD_NEW_THEME':
             return {
@@ -43,10 +45,26 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                 ...state,
                 cards: [...state.cards.filter(card => card.cardID !== action.cardID)]
             }
-        // case 'SKIP_FLASHCARD':
-        //     return {
-        //         ...state,
-        //     }
+        case 'COPY_LIST': {
+            const copyNumber = state.themes.filter(theme =>
+                theme.startsWith(`${action.theme} (Copy`)
+            ).length + 1
+            const copiedTheme = `${action.theme} (Copy ${copyNumber})`
+
+            const originalCards = state.cards.filter(card => card.cardTheme === action.theme);
+
+            const newCards = originalCards.map(card => ({
+                ...card,
+                cardID: state.cards.length + 1,
+                cardTheme: copiedTheme,
+            }));
+
+            return {
+                ...state,
+                themes: [...state.themes, copiedTheme],
+                cards: [...state.cards, ...newCards],
+            };
+        }
         default:
             return state
     }
@@ -60,8 +78,8 @@ export const cardsActions = {
         ({type: 'ADD_NEW_THEME', newThemeAdd} as const),
     deleteWordAC: (cardID: number) =>
         ({type: 'DELETE_WORD', cardID} as const),
-    // skipFlashcardAC: (cardID: number, filteredCards: CardType[]) =>
-    //     ({type: 'SKIP_FLASHCARD', payload: {cardID, filteredCards}} as const),
+    copyListAC: (theme: string) =>
+        ({type: 'COPY_LIST', theme} as const),
 }
 
 export default cardsReducer

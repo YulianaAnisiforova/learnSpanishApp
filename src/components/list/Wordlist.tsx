@@ -6,6 +6,7 @@ import NewWordForm from './NewWordForm'
 import WordlistItem from './WordlistItem'
 import NewThemeForm from './NewThemeForm'
 import {cardsActions} from '../../redux/cardsReducer'
+import {CopyOutlined} from '@ant-design/icons'
 
 const Wordlist = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
@@ -21,11 +22,18 @@ const Wordlist = () => {
         dispatch(cardsActions.deleteWordAC(cardID))
     }
 
+    const onCopyClick = (theme: string) => {
+        dispatch(cardsActions.copyListAC(theme))
+    }
+
     return (
         <div className={style.wordlistBox}>
             {groupedCards.map(group => (
                 <div key={group.theme}>
-                    <div className={style.themeTitle}>{group.theme}</div>
+                    <div className={style.themeTitle}>{group.theme}
+                        <CopyOutlined className={style.copyIcon}
+                        onClick={() => onCopyClick(group.theme)} />
+                    </div>
                         <div className={style.listBox}>
                             {group.cards.map(card =>
                                 <WordlistItem key={card.cardID}
