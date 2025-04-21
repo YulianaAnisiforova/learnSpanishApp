@@ -6,11 +6,17 @@
     margin: 10px;
 }
 
+.titleBox {
+    display: flex;
+    justify-content: center;
+}
+
 .themeTitle {
     text-align: center;
     color: #73948c;
     width: 300px;
-    margin: 10px auto;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
 
 .deleteIcon, .copyIcon, .deleteListIcon {
@@ -33,7 +39,7 @@
     cursor: pointer;
 }
 
-.inputForm {
+.inputForm, .changeTitle {
     font-size: 20px;
     outline: none;
     background-color: white;
@@ -43,11 +49,17 @@
     margin: 5px;
 }
 
+.changeTitle {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
 .inputForm::placeholder {
     padding-left: 10px;
 }
 
 .inputForm:-webkit-autofill {transition: background-color 5000s ease-in-out 0s;}
+.changeTitle:-webkit-autofill {transition: background-color 5000s ease-in-out 0s;}
 
 .btn {
     height: 30px;
@@ -93,5 +105,3 @@
     cursor: pointer;
     color: #73948c;
 }
-
-
