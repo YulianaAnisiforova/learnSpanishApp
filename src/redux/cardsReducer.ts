@@ -13,7 +13,7 @@ let initialState = {
         {cardID: 8, cardTheme: 'el caracter', cardWord: 'malo', cardTranslate: 'bad', isFavorite: false},
         {cardID: 9, cardTheme: 'la comida', cardWord: 'la naranja', cardTranslate: 'orange', isFavorite: false},
     ] as CardType[],
-    themes: ['la familia', 'la casa', 'el caracter', 'la comida'] as string[],
+    themes: ['favorites', 'la familia', 'la casa', 'el caracter', 'la comida'] as string[],
 }
 
 type InitialStateType = typeof initialState
@@ -82,6 +82,15 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                         : card
                 )
             }
+        case 'SET_IS_FAVORITE':
+            return {
+                ...state,
+                cards: state.cards.map(card =>
+                    card.cardID === action.cardID
+                        ? {...card, isFavorite: !card.isFavorite}
+                        : card
+                )
+            }
         default:
             return state
     }
@@ -100,8 +109,8 @@ export const cardsActions = {
         ({type: 'DELETE_LIST', theme} as const),
     changeTitleAC: (newTitle: string, editingTitle: string | null) =>
         ({type: 'CHANGE_TITLE', newTitle, editingTitle} as const),
-    setIsFavoriteAC: (newTitle: string, editingTitle: string | null) =>
-        ({type: 'CHANGE_TITLE', newTitle, editingTitle} as const),
+    setIsFavoriteAC: (cardID: number) =>
+        ({type: 'SET_IS_FAVORITE', cardID} as const),
 }
 
 export default cardsReducer

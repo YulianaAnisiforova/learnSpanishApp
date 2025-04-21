@@ -53,9 +53,6 @@ const Wordlist = () => {
         }
     }
 
-
-    const [isFavorite, setIsFavorite] = useState(false)
-
     return (
         <div className={style.wordlistBox}>
             {groupedCards.map(group => (
@@ -88,8 +85,8 @@ const Wordlist = () => {
                                           cardWord={card.cardWord}
                                           cardTranslate={card.cardTranslate}
                                           onDeleteClick={onDeleteClick}
-                                          isFavorite={isFavorite}
-                                          setIsFavorite={setIsFavorite}
+                                          isFavorite={card.isFavorite}
+                                          setIsFavorite={() => dispatch(cardsActions.setIsFavoriteAC(card.cardID))}
                             />
                         )}
                     </div>

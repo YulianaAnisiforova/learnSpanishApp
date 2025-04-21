@@ -9,7 +9,7 @@ type WordlistItemPropsType = {
     cardTranslate: string,
     onDeleteClick: (cardID: number) => void,
     isFavorite: boolean,
-    setIsFavorite: (isFavorite: boolean) => void,
+    setIsFavorite: (cardID: number) => void,
 }
 
 const WordlistItem: React.FC<WordlistItemPropsType> = (props) => {
@@ -18,7 +18,7 @@ const WordlistItem: React.FC<WordlistItemPropsType> = (props) => {
             {props.cardWord} - {props.cardTranslate}
             <StarOutlined className={style.favIcon}
                 style={{ color: props.isFavorite ? 'gold' : 'gray' }}
-                onClick={() => props.setIsFavorite(!props.isFavorite)}
+                onClick={() => props.setIsFavorite(props.cardID)}
             />
             <DeleteOutlined className={style.deleteIcon}
                             onClick={() => props.onDeleteClick(props.cardID)} />
