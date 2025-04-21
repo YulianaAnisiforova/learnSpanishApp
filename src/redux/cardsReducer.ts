@@ -26,8 +26,10 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                 ...state,
                 cards: [...state.cards,
                     {
-                        cardID: state.cards.length + 1, cardTheme: action.payload.newTheme,
-                        cardTranslate: action.payload.newTranslate, cardWord: action.payload.newWord
+                        cardID: Math.max(...state.cards.map(card => card.cardID), 0) + 1,
+                        cardTheme: action.payload.newTheme,
+                        cardTranslate: action.payload.newTranslate,
+                        cardWord: action.payload.newWord
                     },],
             }
         case 'ADD_NEW_THEME':
@@ -48,9 +50,9 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
 
             const originalCards = state.cards.filter(card => card.cardTheme === action.theme);
 
-            const newCards = originalCards.map(card => ({
+            const newCards = originalCards.map((card, index) => ({
                 ...card,
-                cardID: state.cards.length + 1,
+                cardID: Math.max(...state.cards.map(card => card.cardID), 0) + 1 + index,
                 cardTheme: copiedTheme,
             }))
 
