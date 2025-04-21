@@ -13,7 +13,8 @@ const Wordlist = () => {
     const themes = useSelector((state: AppStateType) => state.cardsPage.themes)
     const dispatch = useDispatch()
 
-    const [isEditing, setIsEditing] = useState(false)
+    // const [isEditing, setIsEditing] = useState(false)
+    const [editingTitle, setEditingTitle] = useState<string | null>(null)
 
     const groupedCards = themes.map(theme => ({
         theme,
@@ -32,12 +33,14 @@ const Wordlist = () => {
         dispatch(cardsActions.deleteListAC(theme))
     }
 
-    const activateEditMode = () => {
-        setIsEditing(true)
+    const activateEditMode = (title: string) => {
+        // setIsEditing(true)
+        setEditingTitle(title)
     }
 
     const deactivateEditMode = () => {
-        setIsEditing(false)
+        // setIsEditing(false)
+        setEditingTitle(null)
     }
 
     return (
@@ -45,10 +48,10 @@ const Wordlist = () => {
             {groupedCards.map(group => (
                 <div key={group.theme}>
                     <div className={style.titleBox}>
-                        {isEditing
+                        {editingTitle === group.theme
                             ? <input className={style.changeTitle} onBlur={deactivateEditMode} autoFocus/>
                             : <div className={style.themeTitle}
-                                   onDoubleClick={activateEditMode}>
+                                   onDoubleClick={() => activateEditMode(group.theme)}>
                                 {group.theme}
                                 <CopyOutlined className={style.copyIcon}
                                               onClick={() => onCopyClick(group.theme)}/>
