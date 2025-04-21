@@ -65,6 +65,10 @@
     transition: 0.5s;
 }
 
+.btn:active {
+    transform: translateY(3px);
+}
+
 .theme {
     text-align: center;
     color: #73948c;

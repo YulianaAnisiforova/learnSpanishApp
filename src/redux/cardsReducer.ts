@@ -13,7 +13,7 @@ let initialState = {
         {cardID: 8, cardTheme: 'el caracter', cardWord: 'malo', cardTranslate: 'bad', isFavorite: false},
         {cardID: 9, cardTheme: 'la comida', cardWord: 'la naranja', cardTranslate: 'orange', isFavorite: false},
     ] as CardType[],
-    themes: ['favorites', 'la familia', 'la casa', 'el caracter', 'la comida'] as string[],
+    themes: ['la familia', 'la casa', 'el caracter', 'la comida'] as string[],
 }
 
 type InitialStateType = typeof initialState

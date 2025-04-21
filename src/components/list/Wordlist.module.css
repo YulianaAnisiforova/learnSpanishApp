@@ -85,6 +85,10 @@
     cursor: auto;
 }
 
+.btn:active {
+    transform: translateY(3px);
+}
+
 .formBox {
     display: flex;
     align-items: center;

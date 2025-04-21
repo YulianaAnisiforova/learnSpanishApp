@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {AppStateType} from '../../redux/store'
 import style from './FlashCards.module.css'
 import ThemeSelector from './ThemeSelector'
-import {CloseOutlined, LeftOutlined, RetweetOutlined, RightOutlined} from '@ant-design/icons'
+import {CloseOutlined, LeftOutlined, RetweetOutlined, RightOutlined, StarOutlined} from '@ant-design/icons'
 import {CardType} from '../../types/types'
 import FlashCardItem from './FlashCardItem'
+import {cardsActions} from '../../redux/cardsReducer'
 
 const FlashCards = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
@@ -17,6 +18,8 @@ const FlashCards = () => {
     const [index, setIndex] = useState(0)
     const [isFlipped, setIsFlipped] = useState(false)
 
+    const dispatch = useDispatch()
+
     const filteredCards = selectedTheme === 'all'
         ? cards
         : cards.filter(card => card.cardTheme === selectedTheme)
@@ -25,7 +28,7 @@ const FlashCards = () => {
 
     useEffect(() => {
         setCurrentCards(filteredCards)
-    }, [selectedTheme])
+    }, [selectedTheme, cards])
 
     const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedTheme(event.target.value)
@@ -83,11 +86,22 @@ const FlashCards = () => {
                     <FlashCardItem isFlipped={isFlipped}
                                    index={index}
                                    currentCards={currentCards}
-                                   setIsFlipped={setIsFlipped} />
+                                   setIsFlipped={setIsFlipped}
+                    />
 
                     <div className={style.repeatBtnBox}>
-                        <button className={style.btn} onClick={() => onSkipWord(currentCards[index].cardID, currentCards)}><CloseOutlined /></button>
-                        <button className={style.btn} onClick={onNext}><RetweetOutlined /></button>
+                        <button className={style.btn}
+                                onClick={() => dispatch(cardsActions.setIsFavoriteAC(currentCards[index].cardID))}>
+                            <StarOutlined style={{ color: currentCards[index].isFavorite ? 'gold' : 'gray' }} />
+                        </button>
+                        <button className={style.btn}
+                                onClick={() => onSkipWord(currentCards[index].cardID, currentCards)}>
+                            <CloseOutlined />
+                        </button>
+                        <button className={style.btn}
+                                onClick={onNext}>
+                            <RetweetOutlined />
+                        </button>
                     </div>
                 </div>
 
