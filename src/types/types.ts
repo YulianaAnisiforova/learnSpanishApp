@@ -3,4 +3,5 @@ export type CardType = {
     cardTheme: string,
     cardWord: string,
     cardTranslate: string,
+    isFavorite: boolean,
 }

@@ -5,7 +5,7 @@ import FlashCards from './components/flashcards/FlashCards'
 import StartPage from './components/startPage/StartPage'
 import Header from './components/header/Header'
 
-function App() {
+const App = () => {
     return (
         <div>
             <Header/>
@@ -15,7 +15,7 @@ function App() {
                 <Route path={'/flashcards'} element={<FlashCards/>}/>
             </Routes>
         </div>
-    );
+    )
 }
 
 export default App

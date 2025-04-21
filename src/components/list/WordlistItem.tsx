@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './Wordlist.module.css'
-import { DeleteOutlined } from '@ant-design/icons'
+import {DeleteOutlined, StarOutlined} from '@ant-design/icons'
 
 type WordlistItemPropsType = {
     cardID: number,
@@ -8,12 +8,18 @@ type WordlistItemPropsType = {
     cardWord: string,
     cardTranslate: string,
     onDeleteClick: (cardID: number) => void,
+    isFavorite: boolean,
+    setIsFavorite: (isFavorite: boolean) => void,
 }
 
 const WordlistItem: React.FC<WordlistItemPropsType> = (props) => {
     return (
         <div className={style.wordItem} >
             {props.cardWord} - {props.cardTranslate}
+            <StarOutlined className={style.favIcon}
+                style={{ color: props.isFavorite ? 'gold' : 'gray' }}
+                onClick={() => props.setIsFavorite(!props.isFavorite)}
+            />
             <DeleteOutlined className={style.deleteIcon}
                             onClick={() => props.onDeleteClick(props.cardID)} />
         </div>

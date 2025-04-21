@@ -63,7 +63,7 @@ const FlashCards = () => {
                                    handleThemeChange={handleThemeChange}
                                    themes={themeOptions}/>
                     <div className={style.card}>
-                        <span>No cards in this topic yet.</span>
+                        <span>No cards in this topic yet. Add some!</span>
                     </div>
                 </div>
             </div>

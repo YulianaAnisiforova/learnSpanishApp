@@ -19,16 +19,20 @@
     margin-bottom: 5px;
 }
 
-.deleteIcon, .copyIcon, .deleteListIcon {
+.deleteIcon, .copyIcon, .deleteListIcon, .favIcon {
     opacity: 0;
     margin-left: 5px;
 }
 
-.wordItem:hover .deleteIcon {
+.wordItem:hover .deleteIcon, .wordItem:hover .favIcon {
     height: 20px;
     opacity: 1;
     color: #83a69d;
     cursor: pointer;
+}
+
+.favIcon[style*="color: gold"] {
+    opacity: 1;
 }
 
 .themeTitle:hover .copyIcon, .themeTitle:hover .deleteListIcon {
