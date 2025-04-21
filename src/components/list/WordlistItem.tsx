@@ -7,16 +7,15 @@ type WordlistItemPropsType = {
     cardTheme: string,
     cardWord: string,
     cardTranslate: string,
-    onDeleteDoubleClick: (cardID: number) => void,
+    onDeleteClick: (cardID: number) => void,
 }
 
 const WordlistItem: React.FC<WordlistItemPropsType> = (props) => {
     return (
-        <div className={style.wordItem}
-             onDoubleClick={() => props.onDeleteDoubleClick(props.cardID)}
-        >
+        <div className={style.wordItem} >
             {props.cardWord} - {props.cardTranslate}
-            <DeleteOutlined className={style.deleteIcon}/>
+            <DeleteOutlined className={style.deleteIcon}
+                            onClick={() => props.onDeleteClick(props.cardID)} />
         </div>
     )
 }

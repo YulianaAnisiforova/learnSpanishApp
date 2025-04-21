@@ -6,7 +6,7 @@ import NewWordForm from './NewWordForm'
 import WordlistItem from './WordlistItem'
 import NewThemeForm from './NewThemeForm'
 import {cardsActions} from '../../redux/cardsReducer'
-import {CopyOutlined} from '@ant-design/icons'
+import {CopyOutlined, DeleteOutlined} from '@ant-design/icons'
 
 const Wordlist = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
@@ -18,12 +18,16 @@ const Wordlist = () => {
         cards: cards.filter(card => card.cardTheme === theme)
     }));
 
-    const onDeleteDoubleClick = (cardID: number) => {
+    const onDeleteClick = (cardID: number) => {
         dispatch(cardsActions.deleteWordAC(cardID))
     }
 
     const onCopyClick = (theme: string) => {
         dispatch(cardsActions.copyListAC(theme))
+    }
+
+    const onDeleteListClick = (theme: string) => {
+        dispatch(cardsActions.deleteListAC(theme))
     }
 
     return (
@@ -33,6 +37,8 @@ const Wordlist = () => {
                     <div className={style.themeTitle}>{group.theme}
                         <CopyOutlined className={style.copyIcon}
                         onClick={() => onCopyClick(group.theme)} />
+                        <DeleteOutlined className={style.deleteListIcon}
+                                        onClick={() => onDeleteListClick(group.theme)} />
                     </div>
                         <div className={style.listBox}>
                             {group.cards.map(card =>
@@ -41,7 +47,7 @@ const Wordlist = () => {
                                               cardTheme={card.cardTheme}
                                               cardWord={card.cardWord}
                                               cardTranslate={card.cardTranslate}
-                                              onDeleteDoubleClick={onDeleteDoubleClick}
+                                              onDeleteClick={onDeleteClick}
                                 />)}
                         </div>
                 </div>

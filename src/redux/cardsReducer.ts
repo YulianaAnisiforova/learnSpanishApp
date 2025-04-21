@@ -65,6 +65,12 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                 cards: [...state.cards, ...newCards],
             };
         }
+        case 'DELETE_LIST':
+            return {
+                ...state,
+                themes: state.themes.filter(theme => theme !== action.theme),
+                cards: state.cards.filter(card => card.cardTheme !== action.theme),
+            }
         default:
             return state
     }
@@ -80,6 +86,8 @@ export const cardsActions = {
         ({type: 'DELETE_WORD', cardID} as const),
     copyListAC: (theme: string) =>
         ({type: 'COPY_LIST', theme} as const),
+    deleteListAC: (theme: string) =>
+        ({type: 'DELETE_LIST', theme} as const),
 }
 
 export default cardsReducer
