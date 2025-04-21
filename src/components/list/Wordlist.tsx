@@ -13,7 +13,6 @@ const Wordlist = () => {
     const themes = useSelector((state: AppStateType) => state.cardsPage.themes)
     const dispatch = useDispatch()
 
-    // const [isEditing, setIsEditing] = useState(false)
     const [editingTitle, setEditingTitle] = useState<string | null>(null)
 
     const groupedCards = themes.map(theme => ({
@@ -34,13 +33,24 @@ const Wordlist = () => {
     }
 
     const activateEditMode = (title: string) => {
-        // setIsEditing(true)
         setEditingTitle(title)
     }
 
     const deactivateEditMode = () => {
-        // setIsEditing(false)
         setEditingTitle(null)
+    }
+
+    const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (editingTitle) {
+            dispatch(cardsActions.changeTitleAC(event.currentTarget.value, editingTitle))
+            setEditingTitle(event.currentTarget.value)
+        }
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            event.currentTarget.blur()
+        }
     }
 
     return (
@@ -49,7 +59,13 @@ const Wordlist = () => {
                 <div key={group.theme}>
                     <div className={style.titleBox}>
                         {editingTitle === group.theme
-                            ? <input className={style.changeTitle} onBlur={deactivateEditMode} autoFocus/>
+                            ? <input className={style.changeTitle}
+                                     onBlur={deactivateEditMode}
+                                     autoFocus
+                                     value={group.theme}
+                                     onChange={onTitleChange}
+                                     onKeyDown={handleKeyDown}
+                            />
                             : <div className={style.themeTitle}
                                    onDoubleClick={() => activateEditMode(group.theme)}>
                                 {group.theme}

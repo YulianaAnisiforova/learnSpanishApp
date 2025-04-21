@@ -21,11 +21,6 @@ type ActionType = InferActionType<typeof cardsActions>
 
 const cardsReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
-        // case 'SET_CARDS':
-        //     return {
-        //         ... state,
-        //         ...action.cards,
-        //     }
         case 'ADD_NEW_CARD':
             return {
                 ...state,
@@ -57,13 +52,13 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                 ...card,
                 cardID: state.cards.length + 1,
                 cardTheme: copiedTheme,
-            }));
+            }))
 
             return {
                 ...state,
                 themes: [...state.themes, copiedTheme],
                 cards: [...state.cards, ...newCards],
-            };
+            }
         }
         case 'DELETE_LIST':
             return {
@@ -71,13 +66,24 @@ const cardsReducer = (state = initialState, action: ActionType): InitialStateTyp
                 themes: state.themes.filter(theme => theme !== action.theme),
                 cards: state.cards.filter(card => card.cardTheme !== action.theme),
             }
+        case 'CHANGE_TITLE':
+            return {
+                ...state,
+                themes: state.themes.map(theme =>
+                    theme === action.editingTitle ? action.newTitle : theme
+                ),
+                cards: state.cards.map(card =>
+                    card.cardTheme === action.editingTitle
+                        ? { ...card, cardTheme: action.newTitle }
+                        : card
+                )
+            }
         default:
             return state
     }
 }
 
 export const cardsActions = {
-    // setCardsAC: (cards: CardType[]) => ({type: 'SET_CARDS', cards} as const),
     addNewCardsAC: (newWord: string, newTranslate: string, newTheme: string) =>
         ({type: 'ADD_NEW_CARD', payload: {newWord, newTheme, newTranslate}} as const),
     addNewThemeAC: (newThemeAdd: string) =>
@@ -88,6 +94,8 @@ export const cardsActions = {
         ({type: 'COPY_LIST', theme} as const),
     deleteListAC: (theme: string) =>
         ({type: 'DELETE_LIST', theme} as const),
+    changeTitleAC: (newTitle: string, editingTitle: string | null) =>
+        ({type: 'CHANGE_TITLE', newTitle, editingTitle} as const),
 }
 
 export default cardsReducer
