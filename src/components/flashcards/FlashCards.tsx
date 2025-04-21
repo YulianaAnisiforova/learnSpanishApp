@@ -12,7 +12,7 @@ const FlashCards = () => {
     const cards = useSelector((state: AppStateType) => state.cardsPage.cards)
     const themes = useSelector((state: AppStateType) => state.cardsPage.themes)
 
-    const themeOptions = ['all', ...themes]
+    const themeOptions = ['all', 'favorites', ...themes]
 
     const [selectedTheme, setSelectedTheme] = useState<string>('all')
     const [index, setIndex] = useState(0)
@@ -22,7 +22,11 @@ const FlashCards = () => {
 
     const filteredCards = selectedTheme === 'all'
         ? cards
-        : cards.filter(card => card.cardTheme === selectedTheme)
+        : (
+            selectedTheme === 'favorites'
+            ? cards.filter(card => card.isFavorite)
+            : cards.filter(card => card.cardTheme === selectedTheme)
+        )
 
     const [currentCards, setCurrentCards] = useState([...filteredCards])
 
