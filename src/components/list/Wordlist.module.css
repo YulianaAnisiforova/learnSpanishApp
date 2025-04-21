@@ -95,6 +95,7 @@
 }
 
 .chooseForm {
+    width: 300px;
     font-size: 20px;
     outline: none;
     background-color: white;

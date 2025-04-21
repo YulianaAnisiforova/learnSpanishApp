@@ -66,9 +66,10 @@ const Wordlist = () => {
                                      onChange={onTitleChange}
                                      onKeyDown={handleKeyDown}
                             />
-                            : <div className={style.themeTitle}
-                                   onDoubleClick={() => activateEditMode(group.theme)}>
-                                {group.theme}
+                            : <div className={style.themeTitle}>
+                                <span onDoubleClick={() => activateEditMode(group.theme)}>
+                                    {group.theme}
+                                </span>
                                 <CopyOutlined className={style.copyIcon}
                                               onClick={() => onCopyClick(group.theme)}/>
                                 <DeleteOutlined className={style.deleteListIcon}
