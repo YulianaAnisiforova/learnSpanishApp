@@ -43,6 +43,15 @@ const Wordlist = () => {
     }
 
     const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const titleExists = themes.some(theme =>
+            theme === event.currentTarget.value && theme !== editingTitle
+        )
+
+        if (titleExists) {
+            alert('Theme title should be unique ;)')
+            return
+        }
+
         dispatch(cardsActions.changeTitleAC(event.currentTarget.value, editingTitle))
         setEditingTitle(event.currentTarget.value)
     }
