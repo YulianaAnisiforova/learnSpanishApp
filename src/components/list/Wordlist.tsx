@@ -37,7 +37,9 @@ const Wordlist = () => {
     }
 
     const deactivateEditMode = () => {
-        setEditingTitle(null)
+        if (editingTitle) {
+            setEditingTitle(null)
+        }
     }
 
     const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +96,7 @@ const Wordlist = () => {
             <br/>
             <NewWordForm/>
             <br/>
-            <NewThemeForm/>
+            <NewThemeForm themes={themes}/>
         </div>
     )
 }

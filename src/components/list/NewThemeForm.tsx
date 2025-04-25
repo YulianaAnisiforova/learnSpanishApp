@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {useDispatch} from 'react-redux'
 import {cardsActions} from '../../redux/cardsReducer'
 import {useForm} from 'react-hook-form'
 import style from './Wordlist.module.css'
 import {PlusOutlined} from '@ant-design/icons'
 
-const NewThemeForm = () => {
+const NewThemeForm: FC<{ themes: string[] }> = ({themes}) => {
     const dispatch = useDispatch()
 
     const {
@@ -18,6 +18,10 @@ const NewThemeForm = () => {
     } = useForm()
 
     const onAddThemeBtn = (data: any) => {
+        if (themes.includes(data.newThemeAdd)) {
+            alert('Theme title should be unique ;)')
+            return
+        }
         dispatch(cardsActions.addNewThemeAC(data.newThemeAdd))
         reset()
     }
@@ -31,7 +35,7 @@ const NewThemeForm = () => {
             <div className={style.formBox}>
                 <input type='text' placeholder={'new theme'} className={style.inputForm}
                        {...register('newThemeAdd', {required: true,})} />
-                <button type={'submit'} disabled={!isValid} className={style.btn} ><PlusOutlined /></button>
+                <button type={'submit'} disabled={!isValid} className={style.btn}><PlusOutlined/></button>
             </div>
         </form>
     )
