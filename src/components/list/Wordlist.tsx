@@ -41,10 +41,8 @@ const Wordlist = () => {
     }
 
     const onTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (editingTitle) {
-            dispatch(cardsActions.changeTitleAC(event.currentTarget.value, editingTitle))
-            setEditingTitle(event.currentTarget.value)
-        }
+        dispatch(cardsActions.changeTitleAC(event.currentTarget.value, editingTitle))
+        setEditingTitle(event.currentTarget.value)
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
